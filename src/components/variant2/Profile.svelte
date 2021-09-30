@@ -1,8 +1,16 @@
-<script>
+<script lang="ts">
+  import type { TDisplayTarget } from "../../global";
+  import displayStore from "../../stores/display";
+
+
   let isShow = false;
 
   const onClick = () => {
     isShow = !isShow;
+  }
+
+  const onNavigate = (menu: TDisplayTarget) => {
+    displayStore.selectMenu({target: menu, type: "profile"})
   }
 </script>
 <div class="ml-3 relative" on:mouseenter="{() => isShow = true}" on:mouseleave="{() => isShow = false}">
@@ -15,11 +23,11 @@
   {#if isShow}
   <div class:active={isShow} class="profile-menu focus:outline-none transform opacity-0 scale-95" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
     <!-- Active: "bg-gray-100", Not Active: "" -->
-    <span class="menu-item" role="menuitem" tabindex="-1">Your Profile</span>
+    <span on:click="{() => {onNavigate("profile")}}" class="menu-item hover:bg-indigo-400"tabindex="-1">Your Profile</span>
 
-    <span class="menu-item" role="menuitem" tabindex="-1">Settings</span>
+    <span on:click="{() => {onNavigate("profile")}}" class="menu-item hover:bg-indigo-400"tabindex="-1">Settings</span>
 
-    <span class="menu-item" role="menuitem" tabindex="-1">Sign out</span>
+    <span on:click="{() => {onNavigate("profile")}}" class="menu-item hover:bg-indigo-400"tabindex="-1">Sign out</span>
   </div>
   {/if}
 </div>

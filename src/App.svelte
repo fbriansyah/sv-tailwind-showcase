@@ -1,14 +1,22 @@
 <script lang="ts">
-  // import AdminLayout from "./layouts/AdminLayout.svelte";
   import LayoutVariant2 from "./layouts/LayoutVariant2.svelte";
-  // import ThreeColumnLayout from "./layouts/ThreeColumnLayout.svelte";
+  import ProfilePage from "./pages/profile-page.svelte";
+  import displayStore from "./stores/display";
 
 	export let name: string;
 </script>
 
 <LayoutVariant2>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  
+    {#if $displayStore.type === "profile"}
+      <ProfilePage />
+    {:else}
+      <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
+        <h1>Hello {name}!</h1>
+        <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+      </div>
+    {/if}
+	
 </LayoutVariant2>
 
 <style lang="postcss" global>

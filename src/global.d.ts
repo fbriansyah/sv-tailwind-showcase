@@ -5,3 +5,10 @@ export interface IMenu {
   icon?: string
   children?: IMenu[]
 }
+
+export type TDisplayTarget = "profile" | "setting" | "password" | "page";
+
+export interface IDisplay {
+  type: "profile" | "page";
+  target: TDisplayTarget;
+}
